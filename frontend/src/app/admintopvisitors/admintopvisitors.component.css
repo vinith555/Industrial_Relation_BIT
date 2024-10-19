@@ -1,0 +1,20 @@
+.mar{
+    margin-top: 52px;
+    margin-bottom: 66px;
+    margin-left: 45px;
+}
+.main{
+    height: 200px;
+    width: 350px;
+}
+.sec{
+    margin-left: 40px;
+    margin-top: 5px;
+}
+.main1 {
+    height: 350px; 
+    width: 1340px;
+    margin-left: 100px;
+    overflow: auto;
+    position: relative; 
+}

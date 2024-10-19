@@ -1,0 +1,60 @@
+<form #f="ngForm" (ngSubmit)="onGet()" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="flex flex-col">
+        <label for="name" class="text-gray-700 font-medium mb-1">Name</label>
+        <input type="text" id="name" ngModel name="name" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].name">
+    </div>
+    <div class="flex flex-col">
+        <label for="domain" class="text-gray-700 font-medium mb-1">Domain</label>
+        <input type="text" id="domain" ngModel name="domain" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].domain">
+    </div>
+    <div class="flex flex-col">
+        <label for="email" class="text-gray-700 font-medium mb-1">Email</label>
+        <input type="email" id="email" ngModel name="email" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].email">
+    </div>
+    <div class="flex flex-col">
+        <label for="date" class="text-gray-700 font-medium mb-1">Date</label>
+        <input type="date" id="date" ngModel name="date" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].visitedDate">
+    </div>
+    <div class="flex flex-col">
+        <label for="company" class="text-gray-700 font-medium mb-1">Company</label>
+        <input type="text" id="company" ngModel name="company" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].companyName">
+    </div>
+    <div class="flex flex-col">
+        <label for="phno" class="text-gray-700 font-medium mb-1">Phone Number</label>
+        <input type="tel" id="phno" ngModel name="ph" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].phoneNumber">
+    </div>
+    <div class="flex flex-col">
+        <label for="linkedin" class="text-gray-700 font-medium mb-1">LinkedIn</label>
+        <input type="text" id="linkedin" ngModel name="linked" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].linkedIn">
+    </div>
+    <div class="flex flex-col">
+        <label for="linkedin" class="text-gray-700 font-medium mb-1">Image</label>
+        <input type="text" id="linkedin" ngModel name="img" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            >
+    </div>
+    <div class="flex flex-col sm:col-span-2">
+        <label for="detail" class="text-gray-700 font-medium mb-1">Detail</label>
+        <textarea id="detail" ngModel name="detail" rows="4" required
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            [ngModel]="detail[i].Detail"></textarea>
+    </div>
+
+    <div class="sm:col-span-2 text-center">
+        <button type="submit" class="py-1 px-5 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400">SAVE</button>
+    </div>
+</form>

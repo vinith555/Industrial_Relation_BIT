@@ -1,0 +1,113 @@
+<div>
+    <app-search (fvalues)="onValue($event)"></app-search>
+  </div>
+
+  <div class="flex justify-center mt-4 mb-5">
+    <button type="button" (click)="openPopup()" class="px-6 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition duration-200">
+      Add
+    </button>
+  </div>
+  
+
+<div *ngIf="isPopupOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 max-w-2xl">
+      <h2 class="text-xl font-semibold mb-4">Add New Entry</h2>
+      <form #f="ngForm" (ngSubmit)="onAdd()">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col">
+                <label for="name" class="text-gray-700 font-semibold">Name</label>
+                <input type="text" id="name" ngModel name="name" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="domain" class="text-gray-700 font-semibold">Domain</label>
+                <input type="text" id="domain" ngModel name="domain" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="email" class="text-gray-700 font-semibold">Email</label>
+                <input type="email" id="email" ngModel name="email" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="date" class="text-gray-700 font-semibold">Date</label>
+                <input type="date" id="date" [ngModel] = "todayDate" name="date" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="company" class="text-gray-700 font-semibold">Company</label>
+                <input type="text" id="company" ngModel name="company" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="phno" class="text-gray-700 font-semibold">Phone</label>
+                <input type="tel" id="phno" ngModel name="ph" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="linked" class="text-gray-700 font-semibold">LinkedIn</label>
+                <input type="tel" id="linked" ngModel name="linked" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex flex-col">
+              <label for="linked" class="text-gray-700 font-semibold">Image</label>
+              <input type="tel" id="linked" ngModel name="img" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+        <div class="flex flex-col mt-4">
+            <label for="detail" class="text-gray-700 font-semibold">Detail</label>
+            <textarea id="detail" ngModel name="detail" rows="4" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"></textarea>
+        </div>
+        <div class="flex justify-end mt-4 space-x-2">
+            <button type="button" (click)="closePopup()" class="py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600">Cancel</button>
+            <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add</button>
+        </div>
+    </form>
+    
+  </div>
+</div>
+
+
+  <div *ngIf="arrStatus; else elseBlock" class="ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+  
+    <div *ngFor="let arr of filteredProfiles"
+    class="flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+  
+        <div class="flex items-center mb-4">
+          <img [src]="arr.img" alt="person-img" class="w-20 h-20 rounded-full object-cover mr-4 shadow-sm">
+          <div class="flex-1">
+            <p class="text-lg font-semibold text-gray-900 mb-1">{{ arr.name }}</p>
+            <p class="text-sm text-gray-500">{{ arr.domain }}</p>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm text-gray-700"><strong>Email:</strong> {{ arr.email }}</p>
+          <p class="text-sm text-gray-700"><strong>Visited Date:</strong> {{ arr.visitedDate | date:'MMMM d, yyyy' }}</p>
+          <p class="text-sm text-gray-700"><strong>Company:</strong> {{ arr.companyName }}</p>
+          <p class="text-sm text-gray-700"><strong>Phone:</strong> {{ arr.phoneNumber }}</p>
+        </div>
+        <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" (click)="onChange(arr._id)">EDIT</button>
+        <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
+                (click)="openDetailView(arr._id)">
+          View
+        </button>
+    </div>
+    
+    
+    <div *ngIf="detailStatus" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+      <div class="relative bg-white w-[600px] max-h-[90vh] p-8 rounded-lg shadow-lg z-10 overflow-y-auto">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeDetailView()">
+          <i class="fa-solid fa-xmark fa-2xl"></i>
+        </button>
+        <app-detailview [index]="pna"></app-detailview>
+      </div>
+    </div> 
+    <div *ngIf="editStatus" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+      <div class="relative bg-white w-[600px] max-h-[90vh] p-8 rounded-lg shadow-lg z-10 overflow-y-auto">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeEdit()">
+          <i class="fa-solid fa-xmark fa-2xl"></i>
+        </button>
+        <app-edit [pName]="pna"></app-edit>
+      </div>
+    </div> 
+     
+  </div>
+  
+  <ng-template #elseBlock>
+    <div class="flex justify-center items-center h-screen">
+      <p class="text-center">No Data Found</p>
+    </div>
+  </ng-template>
