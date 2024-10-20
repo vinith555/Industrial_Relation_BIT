@@ -4,7 +4,8 @@
 <div *ngIf="arrStatus; else elseBlock" class="ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 
   <div *ngFor="let arr of filteredProfiles"
-  class="flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
+  class="flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg"
+>
 
       <div class="flex items-center mb-4">
         <img [src]="arr.img" alt="person-img" class="w-20 h-20 rounded-full object-cover mr-4 shadow-sm">
@@ -19,9 +20,10 @@
         <p class="text-sm text-gray-700"><strong>Company:</strong> {{ arr.companyName }}</p>
         <p class="text-sm text-gray-700"><strong>Phone:</strong> {{ arr.phoneNumber }}</p>
       </div>
-      <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
+      <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:text-blue-600 hover:bg-white focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+ 
               (click)="openDetailView(arr._id)">
-        View
+        VIEW
       </button>
   </div>
   
