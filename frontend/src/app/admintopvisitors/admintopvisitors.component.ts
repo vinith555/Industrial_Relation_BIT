@@ -57,6 +57,7 @@ export class AdmintopvisitorsComponent implements OnInit {
       );
     }
   }
+  showForm = false;
 
   onSubmit() {
     const newEvent = {
@@ -71,10 +72,32 @@ export class AdmintopvisitorsComponent implements OnInit {
         this.form.reset();
         this.upcoming = this.upCome.length;
         this.total = this.completed + this.upcoming;
+        this.showForm = false;
       },
       (error) => {
         console.error('Error adding event:', error);
       }
     );
   }
+
+  showModal: boolean = false;
+  itemToRemove: number | null = null;
+  
+  confirmRemove(index: number) {
+      this.itemToRemove = index;
+      this.showModal = true;
+  }
+  
+  confirmRemoval() {
+      if (this.itemToRemove !== null) {
+          this.removeData(this.itemToRemove);
+          this.closeModal();
+      }
+  }
+  
+  closeModal() {
+      this.showModal = false;
+      this.itemToRemove = null;
+  }
+  
 }
