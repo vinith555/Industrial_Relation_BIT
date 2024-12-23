@@ -109,11 +109,6 @@ export class AdmindashboardComponent {
           console.error('Received an undefined value for id');
       }
   }
-  onRemove(id: string | undefined){
-
-  }
-
-
     closeEdit(){
       this.editStatus=false;
     }

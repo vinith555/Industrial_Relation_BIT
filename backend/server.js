@@ -83,7 +83,20 @@ app.put('/profiledetails/:id', async (req, res) => {
     }
 });
 
-// Event Detail APIs
+app.delete('/profiledetails/:id', async (req, res) => {
+    try {
+        const deletedProfile = await ProfileDetail.findByIdAndDelete(req.params.id);
+        if (deletedProfile) {
+            res.status(200).json({ message: 'Profile deleted' });
+        } else {
+            res.status(404).json({ message: 'Profile not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 app.get('/visitors', async (req, res) => {
     try {
         const visitors = await VisitorDetail.find();

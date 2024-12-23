@@ -33,7 +33,7 @@
 
   
   <div *ngIf="sideBar" class="fixed inset-0 bg-black opacity-50 z-30"></div>
-  <div [ngClass]="{'ml-64': sideBar, 'ml-0': !sideBar}" class="pt-16 transition-all duration-300 min-h-screen bg-gradient-to-b from-gray-100 to-blue-50">
+  <div class="pt-16 transition-all duration-300 min-h-screen bg-gradient-to-b from-gray-100 to-blue-50">
     <router-outlet></router-outlet>
   </div>
   

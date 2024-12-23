@@ -12,4 +12,4 @@ import { AdminComponent } from './admin/admin.component';
 export class AppComponent {
   
 }
-
+// thia is app component

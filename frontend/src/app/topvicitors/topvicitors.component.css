@@ -1,52 +1,21 @@
-.mar {
-    margin-top: 52px;
-    margin-bottom: 66px;
-    margin-left: 45px;
+.fixed-width-grid {
+    grid-template-columns: 100px 250px 350px 300px 100px;
 }
-
-.main {
-    height: 200px;
-    width: 350px;
+::-webkit-scrollbar {
+    width: 6px; 
 }
-
-.sec {
-    margin-left: 40px;
-    margin-top: 5px;
+::-webkit-scrollbar:horizontal {
+    height: 6px; 
 }
-
-.main1 {
-    height: 350px;
-    width: 1340px;
-    margin-left: 100px;
-    overflow: auto;
-    position: relative;
-
- 
-    scrollbar-width: thin; 
-    scrollbar-color: #4379F2 transparent; 
-
-   
+::-webkit-scrollbar-thumb {
+    background-color: #D3D3D3; 
+    border-radius: 10px;
 }
-.main1::-webkit-scrollbar {
-    width: 8px; 
-}
-
-.main1::-webkit-scrollbar-thumb {
-    background-color: #4379F2; 
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
     border-radius: 10px; 
 }
-
-.main1::-webkit-scrollbar-button {
-    display: none; 
-}
-
-.main1::-webkit-scrollbar-track {
-    background: transparent; 
-}
-
-.event-item {
-    margin-bottom: 15px; 
-    padding: 10px; 
-    background-color: #f9f9f9; 
-    border-radius: 8px; 
+html {
+    scrollbar-width: thin; 
+    scrollbar-color: #D3D3D3 #f1f1f1;
 }

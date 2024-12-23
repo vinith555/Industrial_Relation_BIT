@@ -270,4 +270,11 @@ export class PeronDetailService {
     return this.http.put<Visitor>(url, visitor); 
   }
 
+  deleteVisitor(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`; 
+    return this.http.delete<any>(url);
+}
+
+  
+
 }
