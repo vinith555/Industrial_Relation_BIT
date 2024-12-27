@@ -15,6 +15,7 @@ export class EditComponent {
   @ViewChild('f') editForm!: NgForm;
   detail: Visitor[] = [];
   @Input() pName!: string;
+  @Output() popup = new EventEmitter<boolean>();
   i: number = 0;
 
   constructor(private perSer: PeronDetailService) {}
@@ -29,6 +30,10 @@ export class EditComponent {
         console.error('Error fetching visitors:', error);
       }
     );
+  }
+
+  onClose(){
+    this.popup.emit(false);
   }
 
   findVisitorIndex(): number {
@@ -65,6 +70,7 @@ export class EditComponent {
         console.error('Error updating visitor:', error);
       }
     );
+    this.popup.emit(false);
   }
   
 }

@@ -54,7 +54,13 @@
             [ngModel]="detail[i].Detail"></textarea>
     </div>
 
-    <div class="sm:col-span-2 text-center">
-        <button type="submit" class="py-1 px-5 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400">SAVE</button>
+    <div class="sm:col-span-2 text-center flex justify-end gap-4">
+        <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600" (click)="onClose()">
+            Cancel
+        </button>
+        <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+            SAVE
+        </button>
     </div>
+    
 </form>

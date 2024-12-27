@@ -97,9 +97,7 @@ export class AdmindashboardComponent {
           console.error('Error adding visitor:', error);
         }
       );
-    }
-    
-  
+    }  
     onChange(id: string | undefined) {
       this.editStatus = true;
   
@@ -109,16 +107,41 @@ export class AdmindashboardComponent {
           console.error('Received an undefined value for id');
       }
   }
-    closeEdit(){
-      this.editStatus=false;
+    closeEdit(data:boolean){
+      this.editStatus=data;
     }
     isPopupOpen = false;
 
+    onDelete(id:string|undefined){
+      if(id){
+        this.perSer.deleteVisitor(id).subscribe(
+          (error)=>{console.error(error);},
+        );
+      }
+    }
   openPopup() {
     this.isPopupOpen = true;
   }
 
   closePopup() {
     this.isPopupOpen = false;
+  }
+
+  showModal: boolean = false;
+  itemToRemove: string | undefined;
+  
+  confirmRemove(index: string|undefined) {
+      this.itemToRemove = index;
+      this.showModal = true;
+  }
+  
+  confirmRemoval() {
+          this.onDelete(this.itemToRemove);
+          this.closeModal();
+      
+  }
+  closeModal() {
+      this.showModal = false;
+      this.itemToRemove = '';
   }
 }

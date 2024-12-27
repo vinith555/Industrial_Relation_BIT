@@ -27,7 +27,9 @@ export class AdmintopvisitorsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.completed = 20;
+    this.perser.getDet().subscribe(
+      (data)=>{this.completed = data.length}
+    );
 
     this.upco.getUpcomingEv().subscribe(
       (events) => {

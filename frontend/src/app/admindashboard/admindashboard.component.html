@@ -9,57 +9,129 @@
   </div>
   
 
-<div *ngIf="isPopupOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-  <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 max-w-2xl">
+  <div *ngIf="isPopupOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div
+      class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-2xl max-h-[90vh] overflow-y-auto"
+    >
       <h2 class="text-xl font-semibold mb-4">Add New Entry</h2>
       <form #f="ngForm" (ngSubmit)="onAdd()">
-        <div class="grid grid-cols-2 gap-4">
-            <div class="flex flex-col">
-                <label for="name" class="text-gray-700 font-semibold">Name</label>
-                <input type="text" id="name" ngModel name="name" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="domain" class="text-gray-700 font-semibold">Domain</label>
-                <input type="text" id="domain" ngModel name="domain" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="email" class="text-gray-700 font-semibold">Email</label>
-                <input type="email" id="email" ngModel name="email" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="date" class="text-gray-700 font-semibold">Date</label>
-                <input type="date" id="date" [ngModel] = "todayDate" name="date" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="company" class="text-gray-700 font-semibold">Company</label>
-                <input type="text" id="company" ngModel name="company" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="phno" class="text-gray-700 font-semibold">Phone</label>
-                <input type="tel" id="phno" ngModel name="ph" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-                <label for="linked" class="text-gray-700 font-semibold">LinkedIn</label>
-                <input type="tel" id="linked" ngModel name="linked" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
-            <div class="flex flex-col">
-              <label for="linked" class="text-gray-700 font-semibold">Image</label>
-              <input type="tel" id="linked" ngModel name="img" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col">
+            <label for="name" class="text-gray-700 font-semibold">Name</label>
+            <input
+              type="text"
+              id="name"
+              ngModel
+              name="name"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="domain" class="text-gray-700 font-semibold">Domain</label>
+            <input
+              type="text"
+              id="domain"
+              ngModel
+              name="domain"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="email" class="text-gray-700 font-semibold">Email</label>
+            <input
+              type="email"
+              id="email"
+              ngModel
+              name="email"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="date" class="text-gray-700 font-semibold">Date</label>
+            <input
+              type="date"
+              id="date"
+              [ngModel]="todayDate"
+              name="date"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="company" class="text-gray-700 font-semibold">Company</label>
+            <input
+              type="text"
+              id="company"
+              ngModel
+              name="company"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="phno" class="text-gray-700 font-semibold">Phone</label>
+            <input
+              type="tel"
+              id="phno"
+              ngModel
+              name="ph"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="linked" class="text-gray-700 font-semibold">LinkedIn</label>
+            <input
+              type="url"
+              id="linked"
+              ngModel
+              name="linked"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="image" class="text-gray-700 font-semibold">Image</label>
+            <input
+              type="url"
+              id="image"
+              ngModel
+              name="img"
+              class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
         </div>
         <div class="flex flex-col mt-4">
-            <label for="detail" class="text-gray-700 font-semibold">Detail</label>
-            <textarea id="detail" ngModel name="detail" rows="4" class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"></textarea>
+          <label for="detail" class="text-gray-700 font-semibold">Detail</label>
+          <textarea
+            id="detail"
+            ngModel
+            name="detail"
+            rows="4"
+            class="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+            required
+          ></textarea>
         </div>
         <div class="flex justify-end mt-4 space-x-2">
-            <button type="button" (click)="closePopup()" class="py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600">Cancel</button>
-            <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add</button>
+          <button
+            type="button"
+            (click)="closePopup()"
+            class="py-2 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            [disabled]="!f.valid"
+          >
+            Add
+          </button>
         </div>
-    </form>
-    
+      </form>
+    </div>
   </div>
-</div>
-
+  
 
   <div *ngIf="arrStatus; else elseBlock" class="ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
   
@@ -73,7 +145,7 @@
     </button>
 
     
-    <button class="absolute top-16 right-4 text-red-600 hover:text-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" >
+    <button class="absolute top-16 right-4 text-red-600 hover:text-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="confirmRemove(arr._id)">
         <i class="fas fa-trash"></i>
     </button>
 
@@ -109,15 +181,26 @@
     </div> 
     <div *ngIf="editStatus" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div class="relative bg-white w-[600px] max-h-[90vh] p-8 rounded-lg shadow-lg z-10 overflow-y-auto">
-        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeEdit()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeEdit(false)">
           <i class="fa-solid fa-xmark fa-2xl"></i>
         </button>
-        <app-edit [pName]="pna"></app-edit>
+        <app-edit [pName]="pna" (popup)="closeEdit($event)"></app-edit>
       </div>
     </div> 
      
   </div>
   
+  <div *ngIf="showModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-20">
+    <div class="bg-white p-6 rounded shadow-lg w-80">
+        <h2 class="text-lg font-semibold mb-4">Confirm Removal</h2>
+        <p class="mb-6">Are you sure you want to remove this profile?</p>
+        <div class="flex justify-end space-x-4">
+            <button class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300" (click)="closeModal()">Cancel</button>
+            <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" (click)="confirmRemoval()">Remove</button>
+        </div>
+    </div>
+</div>
+
   <ng-template #elseBlock>
     <div class="flex justify-center items-center h-screen">
       <p class="text-center">No Data Found</p>

@@ -2,3 +2,17 @@
     height: 100px;
     width: 100px;
 }
+@media (min-width: 640px) {
+    .profile-container {
+      max-width: 500px; /* Slightly smaller container for medium screens */
+      margin: 0 auto; /* Center the container */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .profile-container {
+      max-width: 600px; /* Slightly larger container for large screens */
+      margin: 0 auto;
+    }
+  }
+  

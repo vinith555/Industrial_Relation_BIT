@@ -4,9 +4,7 @@
 <div *ngIf="arrStatus; else elseBlock" class="ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 
   <div *ngFor="let arr of filteredProfiles"
-  class="flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg"
->
-
+  class="flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg">
       <div class="flex items-center mb-4">
         <img [src]="arr.img" alt="person-img" class="w-20 h-20 rounded-full object-cover mr-4 shadow-sm">
         <div class="flex-1">
@@ -26,8 +24,6 @@
         VIEW
       </button>
   </div>
-  
-  
   <div *ngIf="detailStatus" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
     <div class="relative bg-white w-[600px] max-h-[90vh] p-8 rounded-lg shadow-lg z-10 overflow-y-auto">
       <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeDetailView()">
