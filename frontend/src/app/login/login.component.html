@@ -1,15 +1,16 @@
 <div class="flex items-center justify-center h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md w-80">
-      <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div class="bg-white p-8 rounded shadow-md w-96" *ngIf="toggle">
+      <img src="vecteezy_friends-handshake_1196251.png" alt="" class="h-10 w-14 mx-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center">LOGIN</h2>
       <form (ngSubmit)="onLogin()">
         <div class="mb-4">
-          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username / Email</label>
           <input
             type="text"
             id="username"
             [(ngModel)]="username"
             name="username"
-            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
             required
           />
         </div>
@@ -20,15 +21,75 @@
             id="password"
             [(ngModel)]="password"
             name="password"
-            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
             required
           />
         </div>
         <button
           type="submit"
-          class="w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700"
+          class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
         >
           Login
+        </button>
+      </form>
+      <div class="flex flex-col items-center">
+        <p class="mb-2">or</p>
+        <button class="text-blue-600" (click)="tbetween()">Register</button>
+      </div>      
+    </div>
+    <div class="bg-white p-8 rounded shadow-md w-96" *ngIf="!toggle">
+      <img src="vecteezy_friends-handshake_1196251.png" alt="" class="h-10 w-14 mx-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center">REGISTER</h2>
+      <form (ngSubmit)="onregiter()">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-medium text-gray-700">Enter The Username</label>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="username"
+            name="username"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Enter The Email</label>
+          <input
+            type="text"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Enter The Password</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="confirmpassword" class="block text-sm font-medium text-gray-700">Enter The Confirm Password</label>
+          <input
+            type="password"
+            id="confirmpassword"
+            [(ngModel)]="confirmpassword"
+            name="confirmpassword"
+            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bg-blue-500"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+        >
+          Register
         </button>
       </form>
     </div>
