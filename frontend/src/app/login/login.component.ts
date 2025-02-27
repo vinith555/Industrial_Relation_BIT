@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,33 +11,35 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   username: string = '';
   password: string = '';
+  toggle: boolean = true;
   email:string = '';
   confirmpassword:string = '';
+  loading:boolean = false;
+  constructor(private router: Router,private auth:AuthService) {}
 
-  constructor(private router: Router) {}
+  ngOnInit(): void {
+  }
 
   onLogin() {
-    const validAdmin = { username: 'admin', password: 'password123' };
-    const validUser = { username: 'user', password: 'user123' };
-
-    if (this.username === validAdmin.username && this.password === validAdmin.password) {
-      localStorage.setItem('user', JSON.stringify({ username: this.username, role: 'admin' }));
-      this.router.navigate(['/admin/home']); 
-    } else if (this.username === validUser.username && this.password === validUser.password) {
-      localStorage.setItem('user', JSON.stringify({ username: this.username, role: 'user' }));
-      this.router.navigate(['/user/home']); 
-    } else {
-      alert('Invalid username or password');
-    }
+    this.loading = true;
+    this.auth.checkForUser(this.email,this.password);
+    this.loading = false;
   }
-  toggle:boolean = true;
+
   tbetween(){
     this.toggle = !this.toggle;
   }
   onregiter(){
-    this.toggle = !this.toggle;
+    if(this.password === this.confirmpassword){
+      console.log(this.username + this.password + this.confirmpassword);
+      this.auth.registerUser({email:this.email,pass:this.password,username:this.username});
+      this.toggle = !this.toggle;
+    }else{
+      alert("Invalid password!")
+    }
   }
+
 }

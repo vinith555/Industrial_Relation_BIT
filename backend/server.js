@@ -140,6 +140,46 @@ app.delete('/visitors/:id', async (req, res) => {
     }
 });
 
+
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    pass: { type: String, required: true },
+    username: { type: String, required: true }
+});
+
+const User = mongoose.model('LoginDetail', userSchema, 'logindetail');
+
+app.get('/logindetails', async (req, res) => {
+    try {
+        const loginDetail = await User.find();
+        res.json(loginDetail);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.post('/logindetails', async (req, res) => {
+    const { email, pass, username } = req.body;
+
+    if (!email || !pass || !username) {
+        return res.status(400).json({ message: 'All fields are required!' });
+    }
+
+    try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already exists!' });
+        }
+        const newUser = new User({ email, pass, username });
+        await newUser.save();
+        
+        res.status(201).json({ message: 'User registered successfully!' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
