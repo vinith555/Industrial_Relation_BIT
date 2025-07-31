@@ -4,25 +4,13 @@ import { Visitor } from './detailInterface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Visitor1 {
-  _id?: string;
-  img: File; // 
-  name: string;
-  email: string;
-  domain: string;
-  visitedDate: string;
-  companyName: string;
-  phoneNumber: number;
-  Detail: string;
-  linkedIn: string;
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeronDetailService {
 
-  private apiUrl = 'http://localhost:3000/profiledetails'; 
+  private apiUrl = 'http://localhost:3000/api/profiledetails'; 
 
   constructor(private http: HttpClient) {}
 

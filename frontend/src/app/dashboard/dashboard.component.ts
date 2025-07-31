@@ -59,10 +59,10 @@ export class DashboardComponent {
     }
     get filteredProfiles() {
       const filtered = this.Person.filter((visitor) =>
-      visitor.domain.toLowerCase().includes(this.pDomain.toLowerCase()) &&
-      visitor.name.toLowerCase().includes(this.pName.toLowerCase()) &&
-      visitor.companyName.toLowerCase().includes(this.pCompany.toLowerCase()) &&
-      visitor.visitedDate.toLowerCase().includes(this.pDate.toLowerCase()) 
+      (visitor.domain || '').toLowerCase().includes(this.pDomain.toLowerCase()) &&
+      (visitor.name || '').toLowerCase().includes(this.pName.toLowerCase()) &&
+      (visitor.companyName || '').toLowerCase().includes(this.pCompany.toLowerCase()) &&
+      (visitor.visitedDate || '').toLowerCase().includes(this.pDate.toLowerCase()) 
       );
       return filtered;
     }

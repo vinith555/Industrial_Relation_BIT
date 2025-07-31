@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
 export class UpcomingService {
 
 
-private apiUrl = 'http://localhost:3000/visitors'; 
+private apiUrl = 'http://localhost:3000/api/visitors'; 
 
 constructor(private http: HttpClient) {}
 
 
-getUpcomingEv(): Observable<Array<{ guestName: string; eventName: string; date: string; _id?: string }>> {
-  return this.http.get<Array<{ guestName: string; eventName: string; date: string; _id?: string }>>(this.apiUrl);
+getUpcomingEv(): Observable<Array<{id?: string; guestName: string; eventName: string; eventDate: string; }>> {
+  return this.http.get<Array<{id?: string; guestName: string; eventName: string; eventDate: string; }>>(this.apiUrl);
 }
 
-addEv(event: { guestName: string; eventName: string; date: string }): Observable<any> {
+addEv(event: { guestName: string; eventName: string; eventDate: string }): Observable<any> {
   return this.http.post(this.apiUrl, event);
 }
 

@@ -14,7 +14,7 @@ export class TopvicitorsComponent implements OnInit {
   total: number = 0;
   completed: number = 0;
   upcoming: number = 0;
-  upCome: Array<{ guestName: string, eventName: string, date: string }> = [];
+  upCome: Array<{ id?: string; guestName: string; eventName: string; eventDate: string;}> = [];
 
   constructor(
     private perser: PeronDetailService, 

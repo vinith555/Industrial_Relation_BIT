@@ -37,7 +37,7 @@ export class EditComponent {
   }
 
   findVisitorIndex(): number {
-    return this.detail.findIndex(visitor => visitor._id === this.pName);
+    return this.detail.findIndex(visitor => visitor.id === this.pName);
   }
 
   onGet() {
@@ -47,7 +47,7 @@ export class EditComponent {
     }
     const visitorToUpdate = this.detail[this.i]; 
     const updatedVisitor: Visitor = {
-      _id: visitorToUpdate._id,  
+      id: visitorToUpdate.id,  
       img: this.editForm.value.img || visitorToUpdate.img, 
       name: this.editForm.value.name || visitorToUpdate.name, 
       domain: this.editForm.value.domain || visitorToUpdate.domain,
@@ -58,11 +58,11 @@ export class EditComponent {
       linkedIn: this.editForm.value.linked || visitorToUpdate.linkedIn,
       Detail: this.editForm.value.detail || visitorToUpdate.Detail,
     };
-    if (!updatedVisitor._id) {
+    if (!updatedVisitor.id) {
       console.error('No valid _id provided for update');
       return; 
     }
-    this.perSer.updateVisi(updatedVisitor, updatedVisitor._id).subscribe(
+    this.perSer.updateVisi(updatedVisitor, updatedVisitor.id).subscribe(
       (response) => {
         console.log('Visitor updated successfully:', response);
       },

@@ -67,10 +67,10 @@ export class AdmindashboardComponent {
     }
     get filteredProfiles() {
       const filtered = this.Person.filter((visitor) =>
-      visitor.domain.toLowerCase().includes(this.pDomain.toLowerCase()) &&
-      visitor.name.toLowerCase().includes(this.pName.toLowerCase()) &&
-      visitor.companyName.toLowerCase().includes(this.pCompany.toLowerCase()) &&
-      visitor.visitedDate.toLowerCase().includes(this.pDate.toLowerCase()) 
+      (visitor.domain || '').toLowerCase().includes(this.pDomain.toLowerCase()) &&
+      (visitor.name || '').toLowerCase().includes(this.pName.toLowerCase()) &&
+      (visitor.companyName || '').toLowerCase().includes(this.pCompany.toLowerCase()) &&
+      (visitor.visitedDate || '').toLowerCase().includes(this.pDate.toLowerCase())
       );
       return filtered;
     }
@@ -91,12 +91,12 @@ export class AdmindashboardComponent {
         (response) => {
           console.log('Visitor added successfully:', response);
           this.Person.push(response);
-          this.closePopup();
         },
         (error) => {
           console.error('Error adding visitor:', error);
         }
       );
+      this.closePopup();
     }  
     onChange(id: string | undefined) {
       this.editStatus = true;

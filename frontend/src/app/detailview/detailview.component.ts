@@ -29,6 +29,6 @@ export class DetailviewComponent implements OnInit {
     );
   }
   findVisitorIndex(): number {
-    return this.detail.findIndex(visitor => visitor._id === this.index);
+    return this.detail.findIndex(visitor => visitor.id === this.index);
   }
 }

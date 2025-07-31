@@ -140,12 +140,12 @@
     
    
     <button class="absolute top-4 right-4 text-blue-600 hover:text-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-            (click)="onChange(arr._id)">
+            (click)="onChange(arr.id)">
         <i class="fas fa-edit"></i>
     </button>
 
     
-    <button class="absolute top-16 right-4 text-red-600 hover:text-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="confirmRemove(arr._id)">
+    <button class="absolute top-16 right-4 text-red-600 hover:text-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50" (click)="confirmRemove(arr.id)">
         <i class="fas fa-trash"></i>
     </button>
 
@@ -165,7 +165,7 @@
     </div>
 
     <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:text-blue-600 hover:bg-white focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-            (click)="openDetailView(arr._id)">
+            (click)="openDetailView(arr.id)">
         VIEW
     </button>
 </div>

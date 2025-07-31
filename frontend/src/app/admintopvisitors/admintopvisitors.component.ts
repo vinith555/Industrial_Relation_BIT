@@ -19,7 +19,7 @@ export class AdmintopvisitorsComponent implements OnInit {
   completed: number = 0;
   upcoming: number = 0;
 
-  upCome: Array<{ guestName: string; eventName: string; date: string; _id?: string }> = [];
+  upCome: Array<{ id?: string; guestName: string; eventName: string; eventDate: string; }> = [];
 
   constructor(private upco: UpcomingService, private perser: PeronDetailService) {
     const today = new Date();
@@ -46,8 +46,8 @@ export class AdmintopvisitorsComponent implements OnInit {
   removeData(index: number) {
     const eventToRemove = this.upCome[index];
 
-    if (eventToRemove._id) {
-      this.upco.deleteEv(eventToRemove._id).subscribe(
+    if (eventToRemove.id) {
+      this.upco.deleteEv(eventToRemove.id).subscribe(
         () => {
           this.upCome.splice(index, 1);
           this.upcoming = this.upCome.length;
@@ -65,7 +65,7 @@ export class AdmintopvisitorsComponent implements OnInit {
     const newEvent = {
       guestName: this.form.value.guest,
       eventName: this.form.value.event,
-      date: this.form.value.dat
+      eventDate: this.form.value.dat
     };
 
     this.upco.addEv(newEvent).subscribe(
