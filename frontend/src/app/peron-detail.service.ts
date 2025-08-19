@@ -18,14 +18,12 @@ export class PeronDetailService {
     return this.http.get<Visitor[]>(this.apiUrl);
   }
   
-  addVisi(visitor: Visitor): Observable<Visitor> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Visitor>(this.apiUrl, visitor, { headers });
+  addVisi(formData: FormData): Observable<Visitor> {
+    return this.http.post<Visitor>(this.apiUrl, formData);
   }
 
-  updateVisi(visitor: Visitor, id: string): Observable<Visitor> {
-    const url = `${this.apiUrl}/${id}`; 
-    return this.http.put<Visitor>(url, visitor); 
+  updateVisi(data: FormData , id: string): Observable<Visitor> {
+    return this.http.put<Visitor>(`${this.apiUrl}/${id}`, data); 
   }
 
   deleteVisitor(id: string): Observable<any> {

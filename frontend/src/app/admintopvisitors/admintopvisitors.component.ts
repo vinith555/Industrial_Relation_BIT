@@ -74,12 +74,13 @@ export class AdmintopvisitorsComponent implements OnInit {
         this.form.reset();
         this.upcoming = this.upCome.length;
         this.total = this.completed + this.upcoming;
-        this.showForm = false;
+        
       },
       (error) => {
         console.error('Error adding event:', error);
       }
     );
+    this.showForm = false;
   }
 
   showModal: boolean = false;

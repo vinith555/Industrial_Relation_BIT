@@ -27,6 +27,8 @@ export class AdmindashboardComponent {
 
   todayDate!: string;
 
+
+  selectedFile: File | null = null;
   Person: Visitor[] = [];
 
   constructor(private perSer:PeronDetailService){
@@ -75,22 +77,33 @@ export class AdmindashboardComponent {
       return filtered;
     }
 
+    onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files?.length) {
+      this.selectedFile = fileInput.files[0];
+    }
+    }
+
     onAdd() {
-      const newVisitor = {
-        img: this.add.value.img,
-        name: this.add.value.name,
-        email: this.add.value.email,
-        domain: this.add.value.domain,
-        visitedDate: this.add.value.date,
-        companyName: this.add.value.company,
-        phoneNumber: this.add.value.ph,
-        Detail: this.add.value.detail,
-        linkedIn: this.add.value.linked
-      };   
-      this.perSer.addVisi(newVisitor).subscribe(
+        if (!this.selectedFile) {
+        console.error('Form is invalid or no image selected.');
+        return;
+        }
+
+        const formData = new FormData();
+
+        formData.append('image', this.selectedFile); 
+        formData.append('name', this.add.value.name);
+        formData.append('email', this.add.value.email);
+        formData.append('domain', this.add.value.domain);
+        formData.append('visitedDate', this.add.value.date);
+        formData.append('companyName', this.add.value.company);
+        formData.append('phoneNumber', this.add.value.ph);
+        formData.append('Detail', this.add.value.detail);
+        formData.append('linkedIn', this.add.value.linked);
+      this.perSer.addVisi(formData).subscribe(
         (response) => {
           console.log('Visitor added successfully:', response);
-          this.Person.push(response);
         },
         (error) => {
           console.error('Error adding visitor:', error);

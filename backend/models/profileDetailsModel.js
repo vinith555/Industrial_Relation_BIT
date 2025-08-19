@@ -12,11 +12,10 @@ function addProfileDetails(img, name, email, domain, visitedDate, companyName, p
     db.query(sql, [img, name, email, domain, visitedDate, companyName, phoneNumber, Detail, linkedIn], cb);
 }
 
-function updateUser(uniqeId,data,cb){
-    const {img,name, email, domain, visitedDate, companyName, phoneNumber, Detail, linkedIn} = data;
-    const sql = `UPDATE profileDetails SET img = ?,name= ?,email = ?,domain = ?,visitedDate = ?,companyName=?,phoneNumber=?,Detail=?,linkedIn=?
-    WHERE id = ?`;
-    db.query(sql,[img,name, email, domain, visitedDate, companyName, phoneNumber, Detail, linkedIn, uniqeId],cb);
+function updateUser(uniqeId,img, name, email, domain, visitedDate, companyName, phoneNumber, Detail, linkedIn,cb){
+    const visitedDateFormatted = new Date(visitedDate).toISOString().split("T")[0];
+    const sql = `UPDATE profileDetails SET img = ?,name= ?,email = ?,domain = ?,visitedDate = ?,companyName = ?,phoneNumber = ?,Detail = ?,linkedIn = ? WHERE id = ?`;
+    db.query(sql,[img, name, email, domain, visitedDateFormatted, companyName, phoneNumber, Detail, linkedIn, uniqeId],cb);
 }
 
 function deleteProfileDetails(uniqeId,cb){
