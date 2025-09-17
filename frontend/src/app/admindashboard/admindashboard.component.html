@@ -133,14 +133,14 @@
   </div>
   
 
-  <div *ngIf="arrStatus; else elseBlock" class="ml-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+  <div *ngIf="arrStatus; else elseBlock" class="p-10 flex flex-row flex-wrap justify-center items-center gap-10">
   
-    <div *ngFor="let arr of filteredProfiles"
-    class="relative flex flex-col p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg">
+    <div *ngFor="let arr of filteredProfiles;let i = index;"
+    class="relative flex flex-col w-[300px] h-[300px] p-6 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden transition-shadow duration-300 ease-in-out hover:shadow-lg">
     
    
     <button class="absolute top-4 right-4 text-blue-600 hover:text-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-            (click)="onChange(arr.id)">
+            (click)="onChange(i)">
         <i class="fas fa-edit"></i>
     </button>
 
@@ -153,7 +153,7 @@
         <img [src]="'http://localhost:3000/uploads/' + arr.img" alt="person-img" class="w-20 h-20 rounded-full object-cover mr-4 shadow-sm">
         <div class="flex-1">
             <p class="text-lg font-semibold text-gray-900 mb-1">{{ arr.name }}</p>
-            <p class="text-sm text-gray-500">{{ arr.domain }}</p>
+            <p class="text-sm text-gray-500">{{ arr.domain | truncate:15}}</p>
         </div>
     </div>
     
@@ -165,7 +165,7 @@
     </div>
 
     <button class="mt-6 w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:text-blue-600 hover:bg-white focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-            (click)="openDetailView(arr.id)">
+            (click)="openDetailView(i)">
         VIEW
     </button>
 </div>
@@ -176,7 +176,7 @@
         <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeDetailView()">
           <i class="fa-solid fa-xmark fa-2xl"></i>
         </button>
-        <app-detailview [index]="pna"></app-detailview>
+        <app-detailview [index]="pna"  [detail]="filteredProfiles"></app-detailview>
       </div>
     </div> 
     <div *ngIf="editStatus" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
@@ -184,7 +184,7 @@
         <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" (click)="closeEdit(false)">
           <i class="fa-solid fa-xmark fa-2xl"></i>
         </button>
-        <app-edit [pName]="pna" (popup)="closeEdit($event)"></app-edit>
+        <app-edit [index]="pna" [detail]="filteredProfiles" (popup)="closeEdit($event)"></app-edit>
       </div>
     </div> 
      

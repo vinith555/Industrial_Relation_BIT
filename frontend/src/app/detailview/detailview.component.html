@@ -1,12 +1,29 @@
-<div >
-    <img [src]="'http://localhost:3000/uploads/' + detail[i].img" alt="">
-    <p> <strong>NAME: </strong>{{detail[i].name}}</p>
-    <p> <strong>DOMAIN: </strong>{{detail[i].domain}}</p>
-    <p> <strong>EMAIL: </strong>{{detail[i].email}}</p>
-    <p> <strong>VISITED DATE: </strong>{{detail[i].visitedDate}}</p>
-    <p> <strong>COMPANY NAME: </strong>{{detail[i].companyName}}</p>
-    <p> <strong>PHONE NUMBER: </strong>{{detail[i].phoneNumber}}</p>
-    <p> <Strong>LINKEDIN: </Strong>{{detail[i].linkedIn}}</p>
-    <p> <strong>DETAIL: </strong>{{detail[i].Detail}}</p>
-    <!-- <p> <strong>ID: </strong>{{detail[i]._id}}</p>   -->
+<div class="flex flex-col md:flex-row items-start gap-4 md:gap-6 p-4 md:p-6 w-full">
+  <img [src]="'http://localhost:3000/uploads/' + detail[i].img" alt=""class="w-28 h-28 md:w-36 md:h-36 object-cover rounded-md border border-gray-200 flex-shrink-0"/>
+  <div class="flex-1 space-y-1 md:space-y-2 text-sm md:text-base break-words">
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">NAME:</span>{{detail[i].name}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">DOMAIN:</span>{{detail[i].domain}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">EMAIL:</span>{{detail[i].email}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">VISITED DATE:</span>{{detail[i].visitedDate}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">COMPANY NAME:</span>{{detail[i].companyName}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">PHONE NUMBER:</span>{{detail[i].phoneNumber}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">LINKEDIN:</span>{{detail[i].linkedIn}}
+    </p>
+    <p class="flex flex-wrap">
+      <span class="font-medium text-gray-700 mr-1">DETAIL:</span>{{detail[i].Detail}}
+    </p>
+  </div>
 </div>

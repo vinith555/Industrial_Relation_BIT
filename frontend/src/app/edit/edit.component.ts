@@ -13,32 +13,19 @@ import { PeronDetailService } from '../peron-detail.service';
 })
 export class EditComponent {
   @ViewChild('f') editForm!: NgForm;
-  detail: Visitor[] = [];
-  @Input() pName!: string;
+  @Input()detail: Visitor[] = [];
+  @Input() index!: number;
   @Output() popup = new EventEmitter<boolean>();
   i: number = 0;
 
-  constructor(private perSer: PeronDetailService) {}
-
-  ngOnInit() {
-    this.perSer.getDet().subscribe(
-
-      (data) => {
-        this.detail = data;
-        this.i = this.findVisitorIndex();
-      },
-      (error) => {
-        console.error('Error fetching visitors:', error);
-      }
-    );
+  constructor(private perSer: PeronDetailService) {
+  }
+  ngOnChanges(){
+    this.i = this.index;
   }
 
   onClose(){
     this.popup.emit(false);
-  }
-
-  findVisitorIndex(): number {
-    return this.detail.findIndex(visitor => visitor.id === this.pName);
   }
 
   selectedFile: File | null = null;

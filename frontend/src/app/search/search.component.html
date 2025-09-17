@@ -1,36 +1,36 @@
 <div class="flex flex-row justify-center">
-  <form (submit)="onSubmit()" #f="ngForm" class="p-4 w-full max-w-4xl mx-4 mt-8 mb-10">
-    <div class="flex sm:flex-row flex-col items-center gap-4">
-      <div class="relative flex-grow w-full sm:w-auto">
+  <form (submit)="onSubmit()" #f="ngForm" class="p-4 w-full max-w-6xl mx-4 mt-8 mb-10">
+    <div class="flex flex-row flex-wrap items-center justify-center gap-6">
+      <div class="relative">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i class="fas fa-user text-gray-400"></i>
         </span>
         <input type="text" id="name-p" name="namep" placeholder="Guest Name" 
-          class="pl-10 p-3 w-full sm:w-auto border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+          class="pl-10 p-3 w-[245px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
           ngModel>
       </div>
-      <div class="relative flex-grow w-full sm:w-auto">
+      <div class="relative">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i class="fas fa-building text-gray-400"></i>
         </span>
         <input type="text" id="company" name="company" placeholder="Company Name" 
-          class="pl-10 p-3 w-full sm:w-auto border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+          class="pl-10 p-3 w-[245px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
           ngModel>
       </div>
-      <div class="relative w-full sm:w-auto">
+      <div class="relative">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i class="fas fa-calendar-alt text-gray-400"></i>
         </span>
         <input type="date" id="date" name="date" 
-          class="pl-10 p-3 w-full sm:w-auto border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+          class="pl-10 p-3 w-[245px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
           [ngModel]="todayDate">
       </div>
-      <div class="relative flex-grow w-full sm:w-auto">
+      <div class="relative">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i class="fas fa-globe text-gray-400"></i>
         </span>
         <input type="text" id="domain" name="domain" placeholder="Domain" 
-          class="pl-10 p-3 w-full sm:w-auto border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
+          class="pl-10 p-3 w-[245px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" 
           ngModel>
       </div>
     </div>

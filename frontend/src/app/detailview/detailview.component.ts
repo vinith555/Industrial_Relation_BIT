@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Visitor } from '../detailInterface';
 import { CommonModule } from '@angular/common';
 import { PeronDetailService } from '../peron-detail.service';
@@ -10,25 +10,12 @@ import { PeronDetailService } from '../peron-detail.service';
   templateUrl: './detailview.component.html',
   styleUrls: ['./detailview.component.css'] 
 })
-export class DetailviewComponent implements OnInit {
-  detail: Visitor[] = [];
-  @Input() index!: string;
+export class DetailviewComponent{
+  @Input()detail!: Visitor[];
+  @Input() index!: number;
   i: number = 0;
-
-  constructor(private perSer: PeronDetailService) {}
-
-  ngOnInit() {
-    this.perSer.getDet().subscribe(
-      (data) => {
-        this.detail = data;
-        this.i = this.findVisitorIndex();
-      },
-      (error) => {
-        console.error('Error fetching visitors:', error);
-      }
-    );
-  }
-  findVisitorIndex(): number {
-    return this.detail.findIndex(visitor => visitor.id === this.index);
+  ngOnChanges(changes: SimpleChanges) {
+      this.i = this.index 
+    console.log('i:', this.index, 'detail:', this.detail);
   }
 }

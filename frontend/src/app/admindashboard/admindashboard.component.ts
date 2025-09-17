@@ -7,16 +7,17 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from '../edit/edit.component';
 import { PeronDetailService } from '../peron-detail.service';
+import { TruncatePipe } from '../truncate.pipe';
 @Component({
   selector: 'app-admindashboard',
   standalone: true,
-  imports: [CommonModule,DetailviewComponent,SearchComponent,FormsModule,EditComponent],
+  imports: [CommonModule,DetailviewComponent,SearchComponent,FormsModule,EditComponent,TruncatePipe],
   templateUrl: './admindashboard.component.html',
   styleUrl: './admindashboard.component.css'
 })
 export class AdmindashboardComponent {
   @ViewChild('f')add!:NgForm;
-  pna!:string;
+  pna:number = 0;
   detailStatus:boolean=false;
   editStatus:boolean=false;
   arrStatus:boolean=true;
@@ -29,7 +30,8 @@ export class AdmindashboardComponent {
 
 
   selectedFile: File | null = null;
-  Person: Visitor[] = [];
+  allProfiles: Visitor[] = []; 
+  filteredProfiles: Visitor[] = []
 
   constructor(private perSer:PeronDetailService){
     const today = new Date();
@@ -39,7 +41,8 @@ export class AdmindashboardComponent {
   ngOnInit(){
     this.perSer.getDet().subscribe(
       (data) =>{
-        this.Person = data;
+        this.allProfiles = data;         
+          this.filteredProfiles = [...data];
       },
       (error) => {
         console.error('Error fetching visitors:', error);
@@ -48,11 +51,13 @@ export class AdmindashboardComponent {
   }
 
 
-    openDetailView(pna:string | undefined) {
+    openDetailView(pna:number) {
       this.detailStatus = true;
       document.body.style.overflow = 'hidden'; 
       if(pna){
         this.pna = pna;
+      }else{
+        pna = 0;
       }
     }
   
@@ -65,16 +70,18 @@ export class AdmindashboardComponent {
         this.pDomain = value.domain;
         this.pCompany = value.company ;
         this.pDate = value.date;
-        console.log(this.pDate);
+        this.filteredProfiles = this.applyFilters(); 
     }
-    get filteredProfiles() {
-      const filtered = this.Person.filter((visitor) =>
-      (visitor.domain || '').toLowerCase().includes(this.pDomain.toLowerCase()) &&
-      (visitor.name || '').toLowerCase().includes(this.pName.toLowerCase()) &&
-      (visitor.companyName || '').toLowerCase().includes(this.pCompany.toLowerCase()) &&
-      (visitor.visitedDate || '').toLowerCase().includes(this.pDate.toLowerCase())
-      );
-      return filtered;
+    applyFilters() {
+        if (!this.pName && !this.pDomain && !this.pCompany && !this.pDate) {
+          return [...this.allProfiles]; 
+        }
+        return this.allProfiles.filter(visitor =>
+          (!this.pDomain || (visitor.domain || '').toLowerCase().includes(this.pDomain.toLowerCase())) &&
+          (!this.pName || (visitor.name || '').toLowerCase().includes(this.pName.toLowerCase())) &&
+          (!this.pCompany || (visitor.companyName || '').toLowerCase().includes(this.pCompany.toLowerCase())) &&
+          (!this.pDate || (visitor.visitedDate || '').toLowerCase().includes(this.pDate.toLowerCase()))
+        );
     }
 
     onFileSelected(event: Event): void {
@@ -111,13 +118,13 @@ export class AdmindashboardComponent {
       );
       this.closePopup();
     }  
-    onChange(id: string | undefined) {
+    onChange(id: number) {
       this.editStatus = true;
   
       if (id) {
           this.pna = id;  
       } else {
-          console.error('Received an undefined value for id');
+          this.pna =  0;
       }
   }
     closeEdit(data:boolean){

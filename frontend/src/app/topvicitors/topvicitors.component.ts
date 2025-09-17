@@ -37,4 +37,29 @@ export class TopvicitorsComponent implements OnInit {
       }
     );
   }
+
+  currentPage: number = 1;
+  rowsPerPage: number = 5;
+
+  get totalPages(): number {
+    return Math.ceil(this.upCome.length / this.rowsPerPage);
+  }
+
+  get paginatedRows() {
+    const start = (this.currentPage - 1) * this.rowsPerPage;
+    const end = start + this.rowsPerPage;
+    return this.upCome.slice(start, end);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
 }

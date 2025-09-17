@@ -43,6 +43,32 @@ export class AdmintopvisitorsComponent implements OnInit {
     );
   }
 
+  currentPage: number = 1;
+  rowsPerPage: number = 5;
+
+  get totalPages(): number {
+    return Math.ceil(this.upCome.length / this.rowsPerPage);
+  }
+  currStart:number = 0;
+  get paginatedRows() {
+    const start = (this.currentPage - 1) * this.rowsPerPage;
+    this.currStart = start;
+    const end = start + this.rowsPerPage;
+    return this.upCome.slice(start, end);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
   removeData(index: number) {
     const eventToRemove = this.upCome[index];
 
@@ -60,6 +86,10 @@ export class AdmintopvisitorsComponent implements OnInit {
     }
   }
   showForm = false;
+
+  addEvent(){
+    this.showForm = true;
+  }
 
   onSubmit() {
     const newEvent = {
