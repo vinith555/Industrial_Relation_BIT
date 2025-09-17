@@ -14,10 +14,22 @@ exports.addEvent = (req,res)=>{
     });
 }
 
+exports.updateEvent = (req,res)=>{
+    const id = req.params.id;
+    event.updateEvent(id,req.body,(err,result)=>{
+        if (err){ console.error('DB error updating event:', err); return res.status(500).send("Error updating event");}
+        if (result.affectedRows === 0) {
+            
+            return res.status(404).send("Event not found");
+        }
+        res.status(200).send("Event updated successfully");
+    });
+}
+
 exports.deleteEvent = (req,res)=>{
     const id = req.params.id;
     event.deleteEvent(id,(err,result)=>{
         if(err) return res.status(500).send("Error deleting event");
         res.status(200).send("Event Deleted Successfully");
-    })
+    });
 }

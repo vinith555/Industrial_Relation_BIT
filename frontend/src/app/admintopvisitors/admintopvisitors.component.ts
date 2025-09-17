@@ -19,7 +19,7 @@ export class AdmintopvisitorsComponent implements OnInit {
   completed: number = 0;
   upcoming: number = 0;
 
-  upCome: Array<{ id?: string; guestName: string; eventName: string; eventDate: string; }> = [];
+  upCome: Array<{ id: string; guestName: string; eventName: string; eventDate: string; }> = [];
 
   constructor(private upco: UpcomingService, private perser: PeronDetailService) {
     const today = new Date();
@@ -132,5 +132,37 @@ export class AdmintopvisitorsComponent implements OnInit {
       this.showModal = false;
       this.itemToRemove = null;
   }
-  
+  updateForm:boolean = false;
+  guestName:string = '';
+  eventName:string = '';
+  eventDate:string = '';
+  evid:string= '';
+  updateEvent(id:number){
+    this.updateForm = true;
+    this.guestName = this.upCome[id].guestName;
+    this.eventName = this.upCome[id].eventName;
+    this.eventDate = this.upCome[id].eventDate;
+    this.evid = this.upCome[id].id;
+  }
+
+  updateModel(){
+
+    function toMySQLDate(dateString: string): string {
+      const d = new Date(dateString);
+      const year = d.getFullYear();
+      const month = ('0' + (d.getMonth() + 1)).slice(-2);
+      const day = ('0' + d.getDate()).slice(-2);
+      return `${year}-${month}-${day}`;
+    }
+    const formattedDate = toMySQLDate(this.eventDate);
+    console.log(formattedDate);
+    
+    this.upco.updateEv(this.evid,{guestName:this.guestName,eventName:this.eventName,eventDate:formattedDate}).subscribe(
+      (data)=>{console.log(data);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+    this.updateForm = false;
+  }
 }
