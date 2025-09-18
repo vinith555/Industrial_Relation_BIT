@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +7,17 @@ import { CanActivate, Router } from '@angular/router';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  canActivate(): boolean {
-    const user = localStorage.getItem('user'); 
+  canActivate(route: ActivatedRouteSnapshot) { 
+    const stored = localStorage.getItem('isLoggedIn');
+    const isLoggedIn = stored ? JSON.parse(stored) : false;
+    const role = localStorage.getItem('role');
+    const expectedRole = route.data['role'] as string;
 
-    if (user) {
+    if (isLoggedIn && role === expectedRole) {
       return true; 
     }
-  
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login']);
     return false;
-  }
+   }
+
 }

@@ -8,7 +8,7 @@ import { UpcomingService } from '../upcoming.service';
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,RouterLink,HomeComponent],
+  imports: [CommonModule,RouterOutlet,RouterLink],
   providers:[PeronDetailService,UpcomingService],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -32,7 +32,8 @@ export class AdminComponent {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
   }
 }

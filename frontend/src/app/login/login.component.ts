@@ -22,24 +22,32 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
   }
-
   onLogin() {
     this.loading = true;
-    this.auth.checkForUser(this.email,this.password);
+    this.auth.loginUser({email:this.email,password:this.password}).subscribe((data)=>{
+      localStorage.setItem('isLoggedIn', JSON.stringify(data.success));
+      localStorage.setItem('role', data.role);
+      if (data.role === 'admin') {
+        this.router.navigate(['/admin/home']);
+      } else {
+        this.router.navigate(['/user/home']);
+      }
+    },(err)=>{
+      localStorage.setItem("isLoggedIn", JSON.stringify(false));
+      console.log(err);
+    });
     this.loading = false;
   }
-
   tbetween(){
     this.toggle = !this.toggle;
   }
   onregiter(){
-    if(this.password === this.confirmpassword){
-      console.log(this.username + this.password + this.confirmpassword);
-      this.auth.registerUser({email:this.email,pass:this.password,username:this.username});
-      this.toggle = !this.toggle;
-    }else{
-      alert("Invalid password!")
-    }
+    this.auth.registerUser({name:this.username,email:this.email,password:this.password,role:"user"}).subscribe(
+      (data)=>{console.log(data);
+      },(err)=>{console.log(err);
+      }
+    );
+    this.tbetween();
   }
 
 }

@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from '../home/home.component';
-import { TopvicitorsComponent } from '../topvicitors/topvicitors.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Router } from '@angular/router';
 import { PeronDetailService } from '../peron-detail.service';
 import { UpcomingService } from '../upcoming.service';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [RouterLink,RouterOutlet,CommonModule,HomeComponent,TopvicitorsComponent,DashboardComponent],
+  imports: [RouterLink,RouterOutlet,CommonModule],
   providers:[PeronDetailService,UpcomingService],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
@@ -34,7 +31,8 @@ export class UserComponent {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('role');
     this.router.navigate(['/login']);
   }
 }
